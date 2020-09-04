@@ -20,12 +20,12 @@ import java.sql.Statement;
  *
  * @author Malik Ata
  */
-public class StaffLogin extends javax.swing.JFrame {
+public class StudentLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form StaffLogin
      */
-    public StaffLogin() {
+    public StudentLogin() {
         initComponents();
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
@@ -49,9 +49,9 @@ public class StaffLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        suname = new javax.swing.JTextPane();
+        sId = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        spword = new javax.swing.JTextPane();
+        sPassword = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -64,7 +64,7 @@ public class StaffLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Staff Login");
+        jLabel1.setText("Student Login");
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -82,9 +82,9 @@ public class StaffLogin extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(suname);
+        jScrollPane1.setViewportView(sId);
 
-        jScrollPane2.setViewportView(spword);
+        jScrollPane2.setViewportView(sPassword);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,55 +180,14 @@ public class StaffLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        try {
-            // TODO add your handling code here:
-            
-            String staffName = suname.getText();
-            String password = spword.getText();
-            
-            Class.forName("com.mysql.jdbc.Driver");
-            
-             if (staffName != null && password != null) {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/portal", "root","");
-            String sql = "Select * from staffsignup Where name='" + staffName + "' and password='" + password + "'";
-            
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            if (rs.next()) {
-                //in this case enter when at least one result comes it means user is valid
-                
-            
-            StaffPortal staffP = new StaffPortal();
-            new StaffPortal(staffName).setVisible(true);
-//            StaffLogin.suname.getText(StaffPortal.jTextPane2.setText());
-            
-            staffP.setVisible(true);
-            staffP.setSize(400, 400);
-           
-            this.setVisible(false);
-            this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
-            this.dispose();
-            
-            
-            } else {
-                //in this case enter when  result size is zero  it means user is invalid
-                
-            }
-        }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(StaffLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
+       
         
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -245,6 +204,45 @@ public class StaffLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         try {
+            // TODO add your handling code here:
+            
+//            String staffId = Integer.toString(sId);
+            
+            Integer studentId= Integer.parseInt(sId.getText());
+            
+            String password = sPassword.getText();
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            
+             if (studentId != null && password != null) {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/portal", "root","");
+            String sql = "Select * from studentaccounts Where idnumber='" + studentId + "' and password='" + password + "'";
+            
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                //in this case enter when at least one result comes it means user is valid
+                
+            
+            StudentPortal sPortal = new StudentPortal();
+            sPortal.setVisible(true);
+            this.setVisible(false);
+            this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
+            this.dispose();
+            
+            
+            } else {
+                //in this case enter when  result size is zero  it means user is invalid
+                
+            }
+        }
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(StudentLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -264,20 +262,21 @@ public class StaffLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StaffLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StaffLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StaffLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StaffLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(StudentLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StaffLogin().setVisible(true);
+                new StudentLogin().setVisible(true);
             }
         });
     }
@@ -292,7 +291,7 @@ public class StaffLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     public static javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    protected static javax.swing.JTextPane spword;
-    public static javax.swing.JTextPane suname;
+    public static javax.swing.JTextPane sId;
+    protected static javax.swing.JTextPane sPassword;
     // End of variables declaration//GEN-END:variables
 }

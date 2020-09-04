@@ -22,7 +22,7 @@ public class StaffPortal extends javax.swing.JFrame {
     public StaffPortal(String staffName) {
                 initComponents();
 
-        jLabel1.setText(staffName);
+       
     }
 
     /**
