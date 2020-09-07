@@ -70,7 +70,6 @@ public class StudentLogin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton1.setText("Log In");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setContentAreaFilled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -217,20 +216,20 @@ public class StudentLogin extends javax.swing.JFrame {
             
              if (studentId != null && password != null) {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/portal", "root","");
+            
             String sql = "Select * from studentaccounts Where idnumber='" + studentId + "' and password='" + password + "'";
             
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 //in this case enter when at least one result comes it means user is valid
-                
-            
-            StudentPortal sPortal = new StudentPortal();
-            sPortal.setVisible(true);
-            this.setVisible(false);
-            this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
-            this.dispose();
-            
+             
+       
+                StudentPortal sPortal = new StudentPortal();
+                sPortal.setVisible(true);
+                this.setVisible(false);
+                this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
+                this.dispose();
             
             } else {
                 //in this case enter when  result size is zero  it means user is invalid
