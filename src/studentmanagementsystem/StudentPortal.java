@@ -7,6 +7,7 @@ package studentmanagementsystem;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import static studentmanagementsystem.StudentLogin.sId;
 
 /**
  *
@@ -17,7 +18,7 @@ public class StudentPortal extends javax.swing.JFrame {
     static void main(int[] intArray) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    int id;
     /**
      * Creates new form StudentPortal
      */
@@ -50,7 +51,7 @@ public class StudentPortal extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        studentIdNumber = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -91,7 +92,7 @@ public class StudentPortal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setText("Id Number");
+        studentIdNumber.setText("Id Number");
 
         jLabel11.setText("Time Date");
 
@@ -103,14 +104,14 @@ public class StudentPortal extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel9))
+                    .addComponent(studentIdNumber))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
+                .addComponent(studentIdNumber)
                 .addGap(192, 192, 192)
                 .addComponent(jLabel11)
                 .addGap(23, 23, 23))
@@ -122,6 +123,11 @@ public class StudentPortal extends javax.swing.JFrame {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -214,12 +220,20 @@ public class StudentPortal extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
+
         SignUpForClasses studentSignUp = new SignUpForClasses();
         studentSignUp.setVisible(true);
+        studentSignUp.signUpId.setText(this.studentIdNumber.getText());
+        
+        
         this.setVisible(false);
         this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
             this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,10 +287,10 @@ public class StudentPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    public static javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel studentIdNumber;
     // End of variables declaration//GEN-END:variables
 }

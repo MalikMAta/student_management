@@ -224,9 +224,13 @@ public class StudentLogin extends javax.swing.JFrame {
             if (rs.next()) {
                 //in this case enter when at least one result comes it means user is valid
              
-       
-                StudentPortal sPortal = new StudentPortal();
-                sPortal.setVisible(true);
+                
+                StudentPortal newPortal = new StudentPortal();
+                newPortal.setVisible(true);
+                newPortal.studentIdNumber.setText(this.sId.getText());
+                       
+                
+                
                 this.setVisible(false);
                 this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
                 this.dispose();
